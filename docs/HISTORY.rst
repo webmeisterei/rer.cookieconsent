@@ -9,6 +9,9 @@ Plone 4.1 compatible version based on 0.3.0
 - remove post_handler definitions in GS Profiles
   (currently handlers are a no-op anyway)
 
+- replace plone5 resource bundle registration with plone4
+  js/css resource registry
+
 
 0.3.0 (2018-04-12)
 ------------------
