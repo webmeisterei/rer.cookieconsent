@@ -42,7 +42,6 @@
       directory="profiles/default"
       description="A cookie consent solution that can be used for European Cookie Law or when you care about user's privacy"
       provides="Products.GenericSetup.interfaces.EXTENSION"
-      post_handler=".setuphandlers.post_install"
       />
 
   <genericsetup:registerProfile
@@ -67,7 +66,6 @@
       directory="profiles/uninstall"
       description="Uninstalls the Cookie Constent add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
-      post_handler=".setuphandlers.uninstall"
       />
 
   <utility

@@ -4,7 +4,10 @@ Changelog
 0.3.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+Plone 4.1 compatible version based on 0.3.0
+
+- remove post_handler definitions in GS Profiles
+  (currently handlers are a no-op anyway)
 
 
 0.3.0 (2018-04-12)
