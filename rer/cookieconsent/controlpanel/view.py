@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
-#from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+# from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
+from Products.CMFPlone.utils import safe_unicode
 from rer.cookieconsent import messageFactory as _
 from rer.cookieconsent.controlpanel.interfaces import ICookieConsentSettings
 from rer.cookieconsent.controlpanel.interfaces import ICookieBannerSettings
@@ -34,7 +35,7 @@ class CookieConsentSettingsEditForm(controlpanel.RegistryEditForm):
     """Media settings form.
     """
     schema = ICookieConsentSettings
-    #fields = field.Fields(ICookieBannerSettings)
+    # fields = field.Fields(ICookieBannerSettings)
     groups = (FormCookieConsentBanner, FormOptOut)
     id = "CookieConsentSettingsEditForm"
     label = _(u"Cookie consent configuration")
@@ -51,8 +52,7 @@ class CookieConsentSettingsEditForm(controlpanel.RegistryEditForm):
             if not text:
                 continue
             safe_text = pt.convert('safe_html', text)
-            configuration.text = safe_text.getData().decode('utf-8')
-
+            configuration.text = safe_unicode(safe_text.getData())
 
     @button.buttonAndHandler(pmf('Save'), name='save')
     def handleSave(self, action):
@@ -82,7 +82,6 @@ class CookieConsentSettingsEditForm(controlpanel.RegistryEditForm):
 #            widgets['privacy_link_url'].style = u'width: 100%'
 #            widgets['privacy_link_text'].style = u'width: 100%'
 
-
     def update(self):
         super(CookieConsentSettingsEditForm, self).update()
         for fieldset in self.groups:
@@ -91,20 +90,20 @@ class CookieConsentSettingsEditForm(controlpanel.RegistryEditForm):
                 for main_widget in widgets['cookie_consent_configuration'].widgets:
                     widgets = main_widget.subform.widgets
                     fix_widget_style(widgets['text'])
-                    widgets['privacy_link_url'].style=u"width: 100%"
-                    widgets['privacy_link_text'].size=40
-                    widgets['dashboard_link_text'].size=40
+                    widgets['privacy_link_url'].style = u"width: 100%"
+                    widgets['privacy_link_text'].size = 40
+                    widgets['dashboard_link_text'].size = 40
             if 'optout_configuration' in widgets:
                 for main_widget in widgets['optout_configuration'].widgets:
                     widgets = main_widget.subform.widgets
                     for subwidget in widgets['texts'].widgets:
                         widgets = subwidget.subform.widgets
                         fix_widget_style(widgets['app_description'])
-                        widgets['app_title'].style=u"width: 100%"
+                        widgets['app_title'].style = u"width: 100%"
 
 
 class CookieConsentSettingsControlPanel(controlpanel.ControlPanelFormWrapper):
     """Analytics settings control panel.
     """
     form = CookieConsentSettingsEditForm
-    #index = ViewPageTemplateFile('controlpanel.pt')
+    # index = ViewPageTemplateFile('controlpanel.pt')

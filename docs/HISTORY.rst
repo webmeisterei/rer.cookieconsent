@@ -12,6 +12,7 @@ Plone 4.1 compatible version based on 0.3.0
 - replace plone5 resource bundle registration with plone4
   js/css resource registry
 
+- allow to save umlauts in configuration texts
 
 0.3.0 (2018-04-12)
 ------------------
